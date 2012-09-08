@@ -1,0 +1,30 @@
+{
+  "name": "Chatter Chrome Extension Demo",
+  "version": "0.1",
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self'; img-src *; object-src 'self'",
+  "description":
+    "A simple demonstration of a Chrome Extension for Salesforce.com Chatter.",
+  "icons": {"16": "icon.png"},
+  "permissions": [
+	  "tabs", 
+	  "notifications",
+	  "https://login.salesforce.com/*",
+	  "https://*.salesforce.com/services/*"
+  	],
+  "background": {
+    "page": "background.html"
+  },
+  "content_scripts": [
+  {
+    "matches": ["https://login.salesforce.com/services/oauth2/success*"],
+    "js": ["oauth2_inject.js"],
+    "run_at": "document_start"
+  }
+],
+ "app": {
+    "launch": {
+      "local_path": "main.html"
+    }
+  }
+}

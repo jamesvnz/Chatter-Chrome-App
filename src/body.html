@@ -1,0 +1,10 @@
+<!-- 
+This shows different information depending on the Segment Type. It's included by Angular JS.
+-->
+<span ng-switch on="segment.type" >
+    <span ng-switch-when="Text">{{deentitize(segment.text)}}</span>
+    <span ng-switch-when="Link"><a href="{{segment.url}}" target="_blank" class="propertyLink">{{deentitize(segment.text)}}</a></span>
+    <span ng-switch-when="Mention"><a href="#" rel="tooltip" title="{{segment.user.name}} , {{segment.user.title}}">{{deentitize(segment.text)}}</a></span>
+    <span ng-switch-when="Hashtag"><a class="hashtag">{{deentitize(segment.text)}}</a></span>
+    <span ng-switch-default>{{deentitize(segment.text)}}</span>
+</span>
