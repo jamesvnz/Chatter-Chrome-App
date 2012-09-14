@@ -34,6 +34,7 @@ function FeedController($scope) {
   $scope.refresh = function(isBackground) {
 
       $scope.infoText = "Refreshing...";
+      $scope.errorText = null;
 
       backgroundPage.getNewsFeed(
           function(data) {
@@ -81,13 +82,13 @@ function FeedController($scope) {
       return ret;
   };
 
-  //This section causes the automatic refreshing to run every 30 seconds.
+  //This section causes the automatic refreshing to run every 60 seconds.
   setInterval(function() {
       if ($scope.oauthResults.access_token != null) {
           console.log("refreshing....")
           $scope.refresh(true);
       }
-  }, 30000);
+  }, 60000);
 
 
 }

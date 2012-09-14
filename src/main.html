@@ -8,17 +8,12 @@ Fronde Systems Group, www.fronde.com -->
         <title>
             Your Chatter Feed
         </title>
-        <script type="text/javascript" src="/libraries/jquery-1.7.min.js">
-        </script>
-        <script src="/libraries/angular-1.0.0.min.js" type="text/javascript">
-        </script>
+        <script type="text/javascript" src="/libraries/jquery-1.7.min.js"></script>
+        <script src="/libraries/angular-1.0.0.min.js" type="text/javascript"></script>
         <link href="/libraries/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <script src="/libraries/bootstrap/bootstrap.min.js" type="text/javascript">
-        </script>
-        <script src="/libraries/jquery.timeago.js" type="text/javascript">
-        </script>
-        <script src="main.js" type="text/javascript">
-        </script>
+        <script src="/libraries/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/libraries/jquery.timeago.js" type="text/javascript"></script>
+        <script src="main.js" type="text/javascript"></script>
     </head>
     
     <body>
@@ -62,19 +57,20 @@ Fronde Systems Group, www.fronde.com -->
                 <div class="row">
                     <div class="span1 offset1">
                         <img class="userIcon" title="{{item.actor.name}} {{item.actor.title}} {{item.actor.companyName}}"
-                        src="{{item.actor.photo.smallPhotoUrl}}?oauth_token={{oauthResults.access_token}}&amp;sid=null">
+                        src="{{item.actor.photo.smallPhotoUrl}}?oauth_token={{oauthResults.access_token}}&sid=null">
                     </div>
                     <div class="span10">
                         <b>
                             {{item.parent.name}}
                         </b>
                         <span ng-show="item.parent.name != item.actor.name">
-                            :
-                            <b>
-                                {{item.actor.name}}
-                            </b>
+                            : <b> {{item.actor.name}} </b>
                         </span>
                         <br>
+                        <i class="icon-bullhorn"></i>&nbsp;
+                        <span ng-repeat="segment in item.body.messageSegments">
+                            <span ng-include="'body.html'"></span>
+                        </span>
                         <br>
                         <em>
                             {{formatTimeago(item.createdDate)}}
@@ -89,21 +85,20 @@ Fronde Systems Group, www.fronde.com -->
                     </div>
                 </div>
                 <div class="row">
-                    <div class="span11 offset1">
-                        <div ng-show="item.type == 'ContentPost' + item.attachment">
+                    <div class="span10 offset2">
+                        <div ng-show="item.type == 'ContentPost'">
                             Attachment:
-                            <a href="{{account.oauthResults.instance_url}}/{{item.attachment.id.substring(0,%20item.attachment.id.length%20-%203)%20}}"
+                            <a href="{{oauthResults.instance_url}}/{{item.attachment.id.substring(0, item.attachment.id.length - 3)}}"
                             target="_blank" class="propertyLink">{{item.attachment.title}}</a>
                         </div>
-                        <div ng-show="item.type == 'LinkPost' + item.attachment">
+                        <div ng-show="item.type == 'LinkPost'">
                             <a href="{{item.attachment.url}}" target="_blank" class="propertyLink">{{item.attachment.title}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-show="item.comments.comments.length &lt; item.comments.total">
+                <div class="row" ng-show="item.comments.comments.length < item.comments.total">
                     <div class="span10 offset2">
-                        Last {{item.comments.comments.length}} comments.
-                        <a href="#" onclick="fetchComments('${currentPageUrl}');return false;">show {{item.comments.total - item.comments.comments.length }} earlier comments</a>
+                        Last {{item.comments.comments.length}} of {{item.comments.total - item.comments.comments.length }} comments.
                     </div>
                 </div>
                 <div ng-repeat="comment in item.comments.comments">
@@ -114,10 +109,10 @@ Fronde Systems Group, www.fronde.com -->
                             src="{{comment.user.photo.smallPhotoUrl}}?oauth_token={{oauthResults.access_token}}">
                         </div>
                         <div class="span9">
-                            <b>
-                                {{comment.user.name}}
-                            </b>
-                            :
+                            <b> {{comment.user.name}} </b> : 
+                            <span ng-repeat="segment in comment.body.messageSegments">
+                                <span ng-include="'body.html'"></span>
+                            </span>
                             <br>
                             <em>
                                 {{formatTimeago(comment.createdDate)}}
