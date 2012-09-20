@@ -83,6 +83,8 @@ function FeedController($scope) {
   };
 
   //This section causes the automatic refreshing to run every 60 seconds.
+  //Winter '13 introduces a "check for last change" API call - this should really be used
+  //instead of this whole feed polling.
   setInterval(function() {
       if ($scope.oauthResults.access_token != null) {
           console.log("refreshing....")

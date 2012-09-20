@@ -20,12 +20,12 @@ var chatterURI = "/services/data/v25.0/chatter";
 var oauthParameters = {
     'base_authorise_url': 'https://login.salesforce.com/services/oauth2/authorize',
     'response_type': 'token',
-    'client_id': '3MVG9CVKiXR7Ri5pBJcTaPA4.98lAamVR704FRz5q5C6LZw0QMzShEtxqzztQSIurOKOza4NXVhsf7kaojrhx',
+    'client_id': '3MVG9CVKiXR7Ri5pBJcTaPA4.92uNTr69raLq2d7d8OqJzH9RxCmcnKk3Nk6T362h_lVgx9mP8.yhmF__5XZF',
     'redirect_uri': 'https://login.salesforce.com/services/oauth2/success',
     'reauth_url': 'https://login.salesforce.com/services/oauth2/token',
     'scope': 'id chatter_api refresh_token',
     'authorize_tabId': null,
-    'state': 'chatter_demonstration'
+    'state': 'chatter_demonstration'  //we reflect the state to properly intercept the authorisation for our app.
 };
 
 //Store the feed in the background page so it doesn't disappear when the page is closed.

@@ -12,6 +12,9 @@
 	  "https://login.salesforce.com/*",
 	  "https://*.salesforce.com/services/*"
   	],
+  "web_accessible_resources": [
+    "icon32.png"
+    ],
   "background": {
     "page": "background.html"
   },

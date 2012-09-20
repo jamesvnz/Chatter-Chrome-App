@@ -19,7 +19,7 @@ oauthResults.refresh_token = decodeURIComponent(message.match(/.*refresh_token=(
 
 backgroundPage.storeCredentials(oauthResults);
 
-var loginNotification = webkitNotifications.createNotification('/icon.png', // image.
+var loginNotification = webkitNotifications.createNotification('/icon32.png', // image.
 'Success!', // title.
 'You have logged in to Chatter!' // body.
 );
